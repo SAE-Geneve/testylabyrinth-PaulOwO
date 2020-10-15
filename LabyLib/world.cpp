@@ -11,7 +11,16 @@ World::World(const std::string& map, int length) : hero_({0, 0})
 
 void World::EraseDead()
 {
-	// TODO: Complete me!
+	int n = 0;
+	for (auto& enemy : enemies_)
+	{
+		if (enemy.IsDead())
+		{
+			enemies_.erase(enemies_.begin() + n);
+			break;
+		}
+		n++;
+	}
 }
 
 bool World::HasEnemies() const
@@ -21,32 +30,40 @@ bool World::HasEnemies() const
 }
 
 std::pair<int, int> World::North(const Character& character) const
-{
-	// TODO: Complete me!
-	return { 0, 0 };
+{	
+	return
+	{
+		character.GetPosition().first, character.GetPosition().second - 1
+	};
 }
 
 std::pair<int, int> World::South(const Character& character) const
 {
-	// TODO: Complete me!
-	return { 0, 0 };
+	return
+	{
+		character.GetPosition().first, character.GetPosition().second + 1
+	};
 }
 
 std::pair<int, int> World::East(const Character& character) const
 {
-	// TODO: Complete me!
-	return { 0, 0 };
+	return
+	{
+		character.GetPosition().first + 1, character.GetPosition().second 
+	};
 }
 
 std::pair<int, int> World::West(const Character& character) const
 {
-	// TODO: Complete me!
-	return { 0, 0 };
+	return
+	{
+		character.GetPosition().first - 1, character.GetPosition().second - 1
+	};
 }
 
 void World::HeroAttack()
 {
-	// TODO: Complete me!
+	
 }
 
 void World::ShowMap() const
@@ -118,6 +135,6 @@ std::pair<int, int> World::CheckPosition(
 
 char World::GetTile(std::pair<int, int> xy) const
 {
-	// TODO: Complete me!
+	//return (char)world_[xy_world(x, y)];
 	return '#';
 }
